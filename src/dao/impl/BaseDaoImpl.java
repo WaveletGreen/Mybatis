@@ -2,11 +2,14 @@ package dao.impl;
 
 import java.io.IOException;
 import java.io.Reader;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import util.Page;
 
 import dao.BaseDao;
 import entity.Users;
@@ -18,9 +21,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	public BaseDaoImpl() {
 		try {
-			// 获取配置文件
 			reader = Resources.getResourceAsReader("Configure.xml");
-			// 根据配置文件构建sessionFactory
 			sessionFactory = new SqlSessionFactoryBuilder().build(reader);
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -35,16 +36,39 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		this.reader = reader;
 	}
 
-	@SuppressWarnings("hiding")
 	@Override
-	public <T> T getById(T t) {
-		// 打开session
+	public String add(T t) {
+		return null;
+	}
+
+	@Override
+	public String delet(T t) {
+		return null;
+	}
+
+	@Override
+	public String update(T t) {
+		return null;
+	}
+
+	@Override
+	public T getById(T t, int id) {
 		SqlSession session = sessionFactory.openSession();
-		Users users = (Users) session.selectOne("my.GetUserByID", 1);
+		Users users = (Users) session.selectOne("my.GetUserByID", id);
 		if (users != null) {
-			System.out.println("姓名:" + users.getName() + ",电话"
+			System.out.println("濮撳悕:" + users.getName() + ",鐢佃瘽:"
 					+ users.getPhone());
 		}
+		return null;
+	}
+
+	@Override
+	public List<T> getByPage(T t, Page page) {
+		return null;
+	}
+
+	@Override
+	public List<T> getAll(T t) {
 		return null;
 	}
 

@@ -7,7 +7,7 @@ public class MybatisTester {
 
 	public static void main(String[] args) {
 		BaseDao dao = new BaseDaoImpl();
-		dao.getById("Users");
+		dao.getById("Users",1);
 	}
 
 }

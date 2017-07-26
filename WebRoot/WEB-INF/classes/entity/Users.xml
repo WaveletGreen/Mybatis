@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
- <mapper namespace="my">
-	<select id="GetUserByID" parameterType="int" resultType="Users">
-		select * from users where id = #{id}
-    </select>
+<mapper namespace="my">
+	<select id="GetUserByID" parameterType="String,int" resultType="#{className}">
+		<!-- 该语句是自动匹配，不需要分号结束 -->
+		select * from #{className} where id = #{id}
+	</select>
 </mapper> 
