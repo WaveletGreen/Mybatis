@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	
+	<!-- 
+		在此处修改数据库的驱动包   必须提前将驱动包放到本配置文件的同级目录下 笔者已提前放好
+		如使用Oracle数据库时 <classPathEntry location="oracle.jar" />
+	-->
+	<classPathEntry location="mysql.jar" />
+	
+	<context id="DB2Tables" targetRuntime="MyBatis3">
+		<commentGenerator>
+			<property name="suppressAllComments" value="true" />	<!-- 是否取消注释 -->
+			<property name="suppressDate" value="true" /> 			<!-- 是否生成注释代时间戳 -->
+		</commentGenerator>
+		
+		
+		<!-- 此处修改数据库的连接信息 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://localhost:3306/mybatis" userId="root"
+			password="1243093769llc" />
+	
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+
+		<!-- 
+			要生成的实体类
+			每个项目包的命名 都一样 可以通过修改 该属性 实现
+			targetPackage="com.buy.entity"
+		 -->
+		<javaModelGenerator targetPackage="com.mybatis.entity"
+			targetProject="src">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+		<!-- 要生成的接口 -->
+		<sqlMapGenerator targetPackage="com.mybatis.dao"
+			targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+		<!-- 要生成的映射文件 -->
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.mybatis.dao" targetProject="src">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+
+
+
+		<!-- 
+			配置要映射的表
+			数据库中对应的表：	tableName="EASYBUY_PRODUCT"  
+			项目中实体类的名字：	domainObjectName="ProductEntity"
+			其他属性默认即可
+		-->
+		<table tableName="book" domainObjectName="Book" 
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+			
+		<table tableName="category" domainObjectName="Category"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+		<table tableName="middle" domainObjectName="Middle"
+			enableCountByExample="false" enableUpdateByExample="false"
+			enableDeleteByExample="false" enableSelectByExample="false"
+			selectByExampleQueryId="false"></table>
+	</context>
+</generatorConfiguration>

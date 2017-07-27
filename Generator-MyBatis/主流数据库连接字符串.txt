@@ -1,0 +1,88 @@
+1、链接Sqlserver2000
+驱动类
+com.microsoft.jdbc.sqlserver.SQLServerDriver
+连接字符串
+jdbc:sqlserver://localhost:1433;DatabaseName=pubs
+注：
+(localhost为主机地址,1433是数据库主机的默认端口号，pubs为数据库名) 
+示例：
+Class.forName("com.microsoft.jdbc.sqlserver.SQLServerDriver");
+Connection conn=DriverManager.getConnection("jdbc:sqlserver://219.231.132.51:1433;DatabaseName=pubs","username","password");
+
+2、链接mysql
+驱动类
+com.mysql.jdbc.Driver 
+连接字符串
+jdbc:mysql://localhost:3306/pubs
+注：
+(pubs为数据库名，localhost为主机地址，3306为mysql默认的主机端口) 
+示例：
+Class.forName("com.mysql.jdbc.Driver");
+Connection conn=DriverManager.getConnection("jdbc:mysql://219.231.132.51:3306/pubs","username","password");
+
+3、jdbc-odbc桥链接
+
+驱动类
+sun.jdbc.odbc.JdbcOdbcDriver 
+连接字符串
+jdbc:odbc:dsnname 
+注：
+(dsnname为odbc数据源的名称) 
+
+4、链接Oracle
+驱动类： 
+oracle.jdbc.driver.OracleDriver 
+链接字符串 
+jdbc:oracle:thin:@localhost:1521:pubs
+注：
+(localhost为Oracle数据库的地址，1521端口是oracle的默认端口，pubs为数据库名称 ）
+示例：
+Class.forName("oracle.jdbc.driver.OracleDriver");
+Connection conn=DriverManager.getConnection("jdbc:oracle:thin:@219.231.132.51:1521:pubs","username","password");
+ 
+5、连接DB2
+驱动类：
+com.ibm.db2.jdbc.app.DB2Driver 
+连接字符串： 
+jdbc:db2://192.168.1.10/50000:pubs
+注：
+（这里192.168.1.10为数据库所在服务器IP地址，而50000为DB2连接服务的端口号,pubs为数据库） 
+示例：
+Class.forName("com.ibm.db2.jdbc.app.DB2Driver");
+Connection conn=driverManager.getConnection("jdbc:db2://192.168.1.10/50000:pubs","username","password");
+
+6、链接Sybase
+驱动类： 
+com.sybase.jdbc3.jdbc.SybDriver 
+连接字符串： 
+jdbc:sybase:Tds:192.168.100.252:4500/myDB 
+注：
+（这里192.168.100.252为数据库所在服务器IP地址，而4500为Sybase连接服务的端口号myDB为数据库的名字）
+示例：
+Class.forName("com.sybase.jdbc3.jdbc.SybDriver");
+Connection conn=driverManager.getConnection("jdbc:sybase:Tds:192.168.100.252:4500/myDB","username","password");
+ 
+7、链接Informix
+驱动类： 
+com.informix.jdbc.IfxDriver 
+连接字符串： 
+jdbc:informix-sqli://192.168.100.252:1533/myDB:INFORMIXSERVER=myserver 
+注：
+（这里192.168.100.252为数据库所在服务器IP地址，而1533为Informix连接服务的端口号myDB为数据库的名字） 
+示例：
+Class.forName("com.informix.jdbc.IfxDriver");
+Connection conn=driverManager.getConnection("jdbc:informix-sqli://192.168.100.252:1533/myDB:INFORMIXSERVER=myserver","username","password");
+
+8、连接PostgreSQL
+驱动类：
+org.postgresql.Driver 
+链接字符串：
+jdbc:postgresql://locallocalhost/mydb 
+注：
+（locallocalhost为主机地址，若数据库在远程则locallocalhost为IP地址，mydb为数据库名称）
+示例：
+Class.forName("org.postgresql.Driver"); 
+Conncetion conn=driverManager.getConnection("jdbc:postgresql://locallocalhost/mydb","username","password");
+
+
+

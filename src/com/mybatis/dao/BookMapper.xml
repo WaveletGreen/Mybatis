@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mybatis.dao.BookMapper">
+	<select id="queryAll" resultMap="BaseResultMap">
+	select * from book b
+		inner join middle m
+			on b.bid = m.m_bid
+		inner join category c
+			on c.cid = m.m_cid
+	</select>
+	<resultMap id="BaseResultMap" type="com.mybatis.entity.Book">
+		<id column="bid" property="bid" jdbcType="INTEGER" />
+		<result column="bname" property="bname" jdbcType="VARCHAR" />
+		<collection property="categories" ofType="com.mybatis.entity.Category">
+			<id property="cid" column="cid" />
+			<result property="cname" column="cname" />
+		</collection>
+	</resultMap>
+	<sql id="Base_Column_List">
+		bid, bname
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Integer">
+		select
+		<include refid="Base_Column_List" />
+		from book
+		where bid = #{bid,jdbcType=INTEGER}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+		delete from book
+		where bid = #{bid,jdbcType=INTEGER}
+	</delete>
+	<insert id="insert" parameterType="com.mybatis.entity.Book">
+		insert into book (bid, bname)
+		values (#{bid,jdbcType=INTEGER}, #{bname,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.mybatis.entity.Book">
+		insert into book
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="bid != null">
+				bid,
+			</if>
+			<if test="bname != null">
+				bname,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="bid != null">
+				#{bid,jdbcType=INTEGER},
+			</if>
+			<if test="bname != null">
+				#{bname,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.mybatis.entity.Book">
+		update book
+		<set>
+			<if test="bname != null">
+				bname = #{bname,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where bid = #{bid,jdbcType=INTEGER}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.mybatis.entity.Book">
+		update book
+		set
+		bname = #{bname,jdbcType=VARCHAR}
+		where bid = #{bid,jdbcType=INTEGER}
+	</update>
+</mapper>
